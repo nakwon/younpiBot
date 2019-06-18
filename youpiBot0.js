@@ -1,3 +1,5 @@
+const sourceUrl = "https://raw.githubusercontent.com/nakwon/younpiBot/master/youpiBot.js";
+
 function response(room, msg, sender, isGroupChat, replier, imageDB) {
   if (sender != "윤피") {
     return
@@ -6,18 +8,18 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
   try {
 
     if (msg == "!확인") {
-      var source = Utils.getWebText("https://raw.githubusercontent.com/nakwon/younpiBot/master/youpiBot.js");
+      var source = Utils.getWebText(sourceUrl);
       var length = source.length
       var sourceCode = source.substring(29, length - 40).trim()
       replier.reply(sourceCode);
     }
 
-    if (msg == "update") {
-      var source = Utils.getWebText("https://raw.githubusercontent.com/nakwon/younpiBot/master/youpiBot.js");
+    if (msg == "!update") {
+      var source = Utils.getWebText(sourceUrl);
       var length = source.length
       var sourceCode = source.substring(29, length - 40).trim()
-      FileStream.write("/sdcard/katalkbot/test.js", sourceCode);
-      Api.reload("test.js");
+      FileStream.write("/sdcard/katalkbot/test2.js", sourceCode);
+      Api.reload("test2.js");
       replier.reply("업데이트 되었습니다.")
       return
     }

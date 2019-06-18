@@ -150,17 +150,21 @@ function etc(msg, replier) {
 }
 
 function weather(msg, replier) {
-  var where = msg.substr (4); // where 변수에 메시지의 "/기상정보 " 부분을 잘라낸 값을 정의함
+  var where = msg.substr (4);
 
   if (where.length == 0) {
     return;
   }
 
-  try { // 오류가 발생하지 않았을 때
-    var link = Utils.getWebText ("https://www.google.com/search?q=" + where + "+날씨"); // link 변수에 기상정보 소스를 불러온 값을 정의함
-    var weather = link.split ("<span class=\"vk_gy vk_sh\" id=\"wob_dc\">")[1].split ("<")[0]; // weather 변수에 날씨 정보를 정의함
-    var temp = link.split ("<span class=\"wob_t\" id=\"wob_tm\" style=\"display:inline\">")[1].split ("<")[0]; // temp 변수에 온도를 정의함
-    var rain = link.split ("<span id=\"wob_pp\">")[1].split ("<")[0]; // rain 강수확률
+  try {
+    /* link 변수에 기상정보 소스를 불러온 값을 정의함 */
+    var link = Utils.getWebText ("https://www.google.com/search?q=" + where + "+날씨");
+    /* weather 변수에 날씨 정보를 정의함 */
+    var weather = link.split ("<span class=\"vk_gy vk_sh\" id=\"wob_dc\">")[1].split ("<")[0];
+    /* temp 변수에 온도를 정의함 */
+    var temp = link.split ("<span class=\"wob_t\" id=\"wob_tm\" style=\"display:inline\">")[1].split ("<")[0];
+    /* rain 강수확률 */
+    var rain = link.split ("<span id=\"wob_pp\">")[1].split ("<")[0];
 
     var weatherMessage = where + "의 기상정보\n날씨: " + weather + "\n온도: " + temp + "℃\n강수확률: " + rain;
 
@@ -172,9 +176,9 @@ function weather(msg, replier) {
 
     }
 
-    replier.reply (weatherMessage); // 값을 출력함
-  } catch (e) { // 오류가 발생하였을 때
-    replier.reply ("검색 결과가 없습니다."); // 오류 메시지를 출력함
+    replier.reply (weatherMessage);
+  } catch (e) {
+    replier.reply ("검색 결과가 없습니다.");
   }
 }
 
