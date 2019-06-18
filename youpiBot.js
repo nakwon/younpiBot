@@ -1,6 +1,6 @@
 function response(room, msg, sender, isGroupChat, replier, imageDB) {
   if (AppData.getString("boot") == "off") {
-    return
+    return;
   }
 
   try {
@@ -14,8 +14,8 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
     etc(msg, replier, sender);
 
   } catch (e) {
-    replier.reply("윤피봇 에러\n" + e)
-    FileStream.append("/sdcard/katalkbot/log.txt", e + "\n")
+    replier.reply("윤피봇 에러\n" + e);
+    FileStream.append("/sdcard/katalkbot/log.txt", e + "\n");
   }
 
 }
@@ -128,14 +128,11 @@ function etc(msg, replier) {
   }
 
   if (msg == "!사이트") {
-    replier.reply(
-      "https://godsarmy.garude.de/ 스팩검색\n\n" +
-      "https://sw-tools.net/ 중턴계산기"
-    )
+    replier.reply("https://godsarmy.garude.de/ 스팩검색\n\n" + "https://sw-tools.net/ 중턴계산기");
   }
 
   if (msg.indexOf("!지도") == 0) {
-    replier.reply("https://m.map.naver.com/search2/search.nhn?query=" + msg.substr(4).replace(/ /g, '+') + "&type=#/map")
+    replier.reply("https://m.map.naver.com/search2/search.nhn?query=" + msg.substr(4).replace(/ /g, '+') + "&type=#/map");
 
   }
 
@@ -144,11 +141,11 @@ function etc(msg, replier) {
   }
 
   if (msg.indexOf("!네이버") == 0) {
-    replier.reply("https://search.naver.com/search.naver?query=" + msg.substr(5).replace(/ /g, '+'))
+    replier.reply("https://search.naver.com/search.naver?query=" + msg.substr(5).replace(/ /g, '+'));
   }
 
   if (msg.indexOf("!나무위키") == 0) {
-    replier.reply("https://namu.wiki/w/" + msg.substr(6).replace(/ /g, '%20'))
+    replier.reply("https://namu.wiki/w/" + msg.substr(6).replace(/ /g, '%20'));
   }
 }
 
@@ -156,7 +153,7 @@ function weather(msg, replier) {
   var where = msg.substr (4); // where 변수에 메시지의 "/기상정보 " 부분을 잘라낸 값을 정의함
 
   if (where.length == 0) {
-    return
+    return;
   }
 
   try { // 오류가 발생하지 않았을 때
@@ -165,12 +162,12 @@ function weather(msg, replier) {
     var temp = link.split ("<span class=\"wob_t\" id=\"wob_tm\" style=\"display:inline\">")[1].split ("<")[0]; // temp 변수에 온도를 정의함
     var rain = link.split ("<span id=\"wob_pp\">")[1].split ("<")[0]; // rain 강수확률
 
-    var weatherMessage = where + "의 기상정보\n날씨: " + weather + "\n온도: " + temp + "℃\n강수확률: " + rain
+    var weatherMessage = where + "의 기상정보\n날씨: " + weather + "\n온도: " + temp + "℃\n강수확률: " + rain;
 
     var matterLink = Utils.getWebText ("https://www.google.com/search?q=" + where + "+미세먼지");
     try {
       var matter = matterLink.split("<div class=\"uULQNc\"")[1].split(">")[1].split("<")[0].trim();
-      weatherMessage += "\n미세먼지: " + matter + "㎍/㎥"
+      weatherMessage += "\n미세먼지: " + matter + "㎍/㎥";
     } catch (e) {
 
     }
@@ -187,8 +184,8 @@ function summonWiki(msg, replier) {
 
 function calculate(msg, replier) {
   try {
-    var formula = msg.substr(4).replace(/×/g, "*").replace(/÷/g, "/")
-    replier.reply(eval(formula))
+    var formula = msg.substr(4).replace(/×/g, "*").replace(/÷/g, "/");
+    replier.reply(eval(formula));
   } catch(e) {
     replier.reply("계산식 오류입니다.");
   }
