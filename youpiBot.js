@@ -9,6 +9,8 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
 
     } else if (room == "룬자랑") {
       rune(msg, replier, sender);
+    } else if (room == "섬창") {
+      friends(msg, replier, sender);
     }
 
     etc(msg, replier, sender);
@@ -115,6 +117,17 @@ function rune(msg, replier, sender) {
   if (msg.indexOf("!메뉴수정") == 0) {
     AppData.putString("runeMenu", msg.substr(6));
     replier.reply("메뉴가 수정되었습니다.");
+  }
+}
+
+function friends(msg, replier, sender) {
+  if (msg == "!링크") {
+    replier.reply(AppData.getString("langrisserLink"));
+  }
+
+  if (msg.indexOf("!링크수정") == 0) {
+    AppData.putString("langrisserLink", msg.substr(6));
+    replier.reply("링크가 수정되었습니다.");
   }
 }
 
