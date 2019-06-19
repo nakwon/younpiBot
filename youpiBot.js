@@ -180,8 +180,10 @@ function weather(msg, replier) {
 
     var mattetDocument = Utils.parse("https://www.google.com/search?q=" + where + "+미세먼지");
     try {
-      var matter = mattetDocument.select(".uULQNc").text();
-      weatherMessage += "\n미세먼지: " + matter + "㎍/㎥";
+      var matter = mattetDocument.select(".uULQNc").text().trim();
+      if (matter != "") {
+        weatherMessage += "\n미세먼지: " + matter + "㎍/㎥";
+      }
     } catch (e) {
 
     }
