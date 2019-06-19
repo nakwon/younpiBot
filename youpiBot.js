@@ -170,28 +170,24 @@ function weather(msg, replier) {
   }
 
   try {
-    /* link 변수에 기상정보 소스를 불러온 값을 정의함 */
-    var link = Utils.getWebText ("https://www.google.com/search?q=" + where + "+날씨");
-    /* weather 변수에 날씨 정보를 정의함 */
-    var weather = link.split ("<span class=\"vk_gy vk_sh\" id=\"wob_dc\">")[1].split ("<")[0];
-    /* temp 변수에 온도를 정의함 */
-    var temp = link.split ("<span class=\"wob_t\" id=\"wob_tm\" style=\"display:inline\">")[1].split ("<")[0];
-    /* rain 강수확률 */
-    var rain = link.split ("<span id=\"wob_pp\">")[1].split ("<")[0];
+    var document = Utils.parse("https://www.google.com/search?q=" + where + "+날씨");
+
+    var weather = document.select(".vk_gy").select("#wob_dc").text();
+    var temp = document.select(".wob_t").select("#wob_tm").text();
+    var rain = document.select("#wob_pp").text();
 
     var weatherMessage = where + "의 기상정보\n날씨: " + weather + "\n온도: " + temp + "℃\n강수확률: " + rain;
 
-    var matterLink = Utils.getWebText ("https://www.google.com/search?q=" + where + "+미세먼지");
+    var mattetDocument = Utils.parse("https://www.google.com/search?q=" + where + "+미세먼지");
     try {
-      var matter = matterLink.split("<div class=\"uULQNc\"")[1].split(">")[1].split("<")[0].trim();
+      var matter = mattetDocument.select(".uULQNc").text();
       weatherMessage += "\n미세먼지: " + matter + "㎍/㎥";
     } catch (e) {
 
     }
-
     replier.reply (weatherMessage);
   } catch (e) {
-    replier.reply ("검색 결과가 없습니다.");
+    replier.reply ("검색 결과가 없습니다." + e);
   }
 }
 
