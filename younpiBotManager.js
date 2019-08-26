@@ -10,14 +10,14 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
     if (msg == "!확인") {
       var source = Utils.getWebText(sourceUrl);
       var length = source.length
-      var sourceCode = source.substring(29, length - 40).trim()
+      var sourceCode = source.substring(29, length - 15).trim()
       replier.reply(sourceCode);
     }
 
     if (msg == "!update") {
       var source = Utils.getWebText(sourceUrl);
       var length = source.length
-      var sourceCode = source.substring(29, length - 40).trim()
+      var sourceCode = source.substring(29, length - 15).trim()
       FileStream.write("/sdcard/katalkbot/test2.js", sourceCode);
       Api.reload("test2.js");
       replier.reply("업데이트 되었습니다.")
