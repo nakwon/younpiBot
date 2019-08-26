@@ -67,6 +67,22 @@ function eve(msg, replier, sender) {
     AppData.putString("eveReaction", msg.substr(7));
     replier.reply("리액션이 수정되었습니다.");
   }
+
+  if (msg == "!메뉴") {
+    var menu = AppData.getString("eveMenu").split(",");
+    var rand = Math.floor(Math.random() * menu.length);
+
+    replier.reply(menu[rand]);
+  }
+
+  if (msg == "!메뉴확인") {
+    replier.reply(AppData.getString("eveMenu"));
+  }
+
+  if (msg.indexOf("!메뉴수정") == 0) {
+    AppData.putString("eveMenu", msg.substr(6));
+    replier.reply("메뉴가 수정되었습니다.");
+  }
 }
 
 function rune(msg, replier, sender) {
@@ -87,7 +103,7 @@ function rune(msg, replier, sender) {
     }
   }
 
-  if (msg=="사진을 보냈습니다." || msg=="!리액션") {
+  if (msg=="!리액션") {
     var reaction = AppData.getString("runeReaction").split(",");
     var rand = Math.floor(Math.random() * reaction.length);
 
