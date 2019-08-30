@@ -1,4 +1,4 @@
-const sourceUrl = "https://raw.githubusercontent.com/nakwon/younpiBot/master/youpiBot.js";
+const sourceUrl = "https://raw.githubusercontent.com/nakwon/younpiBot/master/younpiBot.js";
 
 function response(room, msg, sender, isGroupChat, replier, imageDB) {
   if (sender != "윤피") {
