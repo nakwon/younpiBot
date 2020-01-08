@@ -178,7 +178,7 @@ function etc(msg, replier) {
   }
   
   if (msg=="!쿠폰") {
-    replier.reply (AppData.getString("coupon"));
+    replier.reply ("01월 : SW2020JAN85");
   }
 }
 
