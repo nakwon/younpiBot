@@ -176,6 +176,10 @@ function etc(msg, replier) {
   if (msg.indexOf("!나무위키") == 0) {
     replier.reply("https://namu.wiki/w/" + msg.substr(6).replace(/ /g, '%20'));
   }
+  
+  if (msg=="!쿠폰") {
+    replier.reply (AppData.getString("coupon"));
+  }
 }
 
 function weather(msg, replier) {
