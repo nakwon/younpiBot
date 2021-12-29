@@ -32,7 +32,7 @@ bot.addListener(Event.MESSAGE, onMessage);
  */
 function onCommand(msg) {
     msg.reply("hi");
-    onGlobalCommand(msg)
+    onGlobalCommand(msg);
 }
 
 function onGlobalCommand(msg) {
@@ -46,5 +46,5 @@ function onGlobalCommand(msg) {
 }
 
 
-bot.setCommandPrefix("!"); //!로 시작하는 메시지를 command로 판단
+bot.setCommandPrefix("!"); 
 bot.addListener(Event.COMMAND, onCommand);
