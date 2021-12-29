@@ -31,6 +31,7 @@ bot.addListener(Event.MESSAGE, onMessage);
  * (Array) msg.args: 명령어 인자 배열
  */
 function onCommand(msg) {
+    msg.reply("hi");
     onGlobalCommand(msg)
 }
 
