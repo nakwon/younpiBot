@@ -31,7 +31,6 @@ bot.addListener(Event.MESSAGE, onMessage);
  * (Array) msg.args: 명령어 인자 배열
  */
 function onCommand(msg) {
-    msg.reply("hi");
     onGlobalCommand(msg);
 }
 
@@ -41,6 +40,33 @@ function onGlobalCommand(msg) {
     }
 
     if (msg.command === '점심수정') {
+
+    }
+
+    if (msg.command === '날씨') {
+        weather(msg);
+    }
+}
+
+function weather(msg) {
+    try {
+        var where = msg.args[0];
+        var document = org.jsoup.Jsoup.connect("https://www.google.com/search?q=" + where + "+날씨").get();
+        var weather = document.select('.vk_gy').select('#wob_dc').text();
+        var temp = document.select(".wob_t").select("#wob_tm").text();
+        var rain = document.select("#wob_pp").text();
+        
+        var weatherMessage = where + "의 기상정보\n날씨: " + weather + "\n온도: " + temp + "℃\n강수확률: " + rain;
+
+        var mattetDocument =org.jsoup.Jsoup.connect("https://www.google.com/search?q=" + where + "+미세먼지").get();
+        try {
+          var matter = mattetDocument.select(".uULQNc").text().trim();
+          if (matter != "") {
+            weatherMessage += "\n미세먼지: " + matter + "㎍/㎥";
+          }
+
+        msg.reply(weatherMessage);
+    } catch (e) {
 
     }
 }
