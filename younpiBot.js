@@ -60,14 +60,17 @@ function weather(msg) {
 
         var mattetDocument =org.jsoup.Jsoup.connect("https://www.google.com/search?q=" + where + "+미세먼지").get();
         try {
-          var matter = mattetDocument.select(".uULQNc").text().trim();
-          if (matter != "") {
-            weatherMessage += "\n미세먼지: " + matter + "㎍/㎥";
-          }
-
-        msg.reply(weatherMessage);
+            var matter = mattetDocument.select(".uULQNc").text().trim();
+            if (matter != "") {
+                weatherMessage += "\n미세먼지: " + matter + "㎍/㎥";
+            }
+            msg.reply(weatherMessage);
+        } catch (e) {
+            msg.reply(e);
+        }
+    
     } catch (e) {
-
+        msg.reply(e);
     }
 }
 
